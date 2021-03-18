@@ -4,6 +4,7 @@ const DB = "db";
 
 class Mongo{
     static connect(callback){
+        mongoose.set('useFindAndModify', false);
         mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
         const db = mongoose.connection;
         db.on('error', function(err){
