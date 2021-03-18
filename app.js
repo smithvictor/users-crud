@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mg = require('./modules/DB/Mongo');
+const basicAuth = require('express-basic-auth');
 
 mg.connect((success) =>{
   console.log(success);
@@ -17,6 +18,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(basicAuth({
+  users: { 'api': 'JKGS9wln0g4sdgs' }
+}));
 
 app.use('/users', usersRouter);
 
